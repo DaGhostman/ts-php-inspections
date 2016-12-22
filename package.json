@@ -1,0 +1,23 @@
+{
+    "name": "php-inspections",
+    "description": "Code inspection tool for PHP",
+    "version": "0.0.1",
+    "license": "MIT",
+    "engines": {
+        "node": "*"
+    },
+    "bin": "bin/",
+    "dependencies": {
+        "php-parser": "^0.1.4"
+    },
+    "devDependencies": {
+        "typescript": "^2.1.0",
+        "@types/node": "~6.0",
+        "@types/es6-promise": "0.0.32",
+        "ts-node": "~1.7.0"
+    },
+    "scripts": {
+        "watch": "./node_modules/.bin/tsc",
+        "run": "./node_modules/.bin/ts-node bin/php-inspections.ts"
+    }
+}
