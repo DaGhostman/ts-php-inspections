@@ -24,9 +24,8 @@ readable form by just using "php-inspections path-to-php-files" and you are done
 
 In order to use it with other tools, say Editor to parse it, pass `--as-json` before providing the path
 (yes I am lazy and the last argument must always be the path to inspect otherwise a kitten will die),
-the JSON output will contain a single root property: `items` and everything inside is an interface
-implementation of the `InspectionItem` interface, so feel free to check the interface and experiment
-a little I think everything is relatively simple.
+the JSON output is an array of the interface `InspectionItemCollection` interface, so feel free to check
+the interface and experiment a little I think everything is relatively simple.
 
 ## Contributing
 
