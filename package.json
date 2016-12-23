@@ -6,7 +6,7 @@
   "engines": {
     "node": "*"
   },
-  "bin": "./bin/bin.js",
+  "bin": "bin/bin.js",
   "dependencies": {
     "@types/node": "^6.0.53",
     "php-parser": "^0.1.4"
