@@ -3,18 +3,20 @@
 		"target": "es5",
 		"module": "commonjs",
 		"moduleResolution": "node",
-		"sourceMap": true,
+		"sourceMap": false,
 		"alwaysStrict": true,
-		"watch": true,
+		"outDir": "./dist",
 		"typeRoots": [
-			"node_modules/@types/"
-		]
+			"./typings",
+			"./typings/globals"
+		],
+		"types": [
+			"node"
+		],
+		"removeComments": true
 	},
 	"typeAcquisition": {
-		"enable": true,
-		"include": [
-			"node"
-		]
+		"enable": true
 	},
 	"exclude": [
 		"node_modules",
