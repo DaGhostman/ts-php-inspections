@@ -6,8 +6,9 @@
   "engines": {
     "node": "*"
   },
-  "bin": "./dist/bin/php-inspections.js",
+  "bin": "./bin/bin.js",
   "dependencies": {
+    "@types/node": "^6.0.53",
     "php-parser": "^0.1.4"
   },
   "devDependencies": {
@@ -15,7 +16,7 @@
     "typings": "^2.1.0"
   },
   "scripts": {
-    "preinstall": "typings install && tsc",
+    "postinstall": "tsc",
     "watch": "./node_modules/.bin/tsc",
     "run": "./node_modules/.bin/ts-node bin/php-inspections.ts"
   }

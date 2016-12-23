@@ -5,18 +5,10 @@
 		"moduleResolution": "node",
 		"sourceMap": false,
 		"alwaysStrict": true,
-		"outDir": "./dist",
+		"removeComments": true,
 		"typeRoots": [
-			"./typings",
-			"./typings/globals"
-		],
-		"types": [
-			"node"
-		],
-		"removeComments": true
-	},
-	"typeAcquisition": {
-		"enable": true
+			"node_modules/@types"
+		]
 	},
 	"exclude": [
 		"node_modules",
