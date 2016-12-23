@@ -1,6 +1,7 @@
 #!/usr/bin/env ts-node
 
 import * as fs from 'fs';
+import * as process from 'process';
 import * as inspection from '../src/inspections';
 import { TreeBuilder } from '../src/util/treeBuilder.util';
 import { InspectionItemCollection, InspectionItem, InspectionInterface } from '../src/common/interfaces';
