@@ -1,3 +1,4 @@
+#!/usr/bin/env node
 import * as fs from 'fs';
 import * as process from 'process';
 import * as inspection from '../src/inspections';
