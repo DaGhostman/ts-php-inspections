@@ -17,7 +17,6 @@
   },
   "scripts": {
     "postinstall": "tsc",
-    "watch": "./node_modules/.bin/tsc",
-    "run": "./node_modules/.bin/ts-node bin/php-inspections.ts"
+    "watch": "./node_modules/.bin/tsc --watch"
   }
 }
