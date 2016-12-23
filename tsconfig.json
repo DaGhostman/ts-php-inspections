@@ -5,7 +5,10 @@
 		"moduleResolution": "node",
 		"sourceMap": true,
 		"alwaysStrict": true,
-		"watch": true
+		"watch": true,
+		"typeRoots": [
+			"node_modules/@types/"
+		]
 	},
 	"typeAcquisition": {
 		"enable": true,
