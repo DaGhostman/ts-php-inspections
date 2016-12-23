@@ -15,7 +15,7 @@
     "typings": "^2.1.0"
   },
   "scripts": {
-    "prepublish": "typings install && tsc",
+    "build": "typings install && tsc",
     "watch": "./node_modules/.bin/tsc",
     "run": "./node_modules/.bin/ts-node bin/php-inspections.ts"
   }
