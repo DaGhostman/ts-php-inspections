@@ -8,12 +8,9 @@
     },
     "bin": "bin/",
     "dependencies": {
-        "php-parser": "^0.1.4"
-    },
-    "devDependencies": {
+        "php-parser": "^0.1.4",
         "typescript": "^2.1.0",
-        "@types/node": "~6.0",
-        "@types/es6-promise": "0.0.32",
+        "@types/node": "~4.0",
         "ts-node": "~1.7.0"
     },
     "scripts": {
