@@ -7,6 +7,12 @@ hand in making this in something useful and we can learn some thing together :)*
 ***P.S** I used to hate on JS before, but since typescript I actually rediscovered JS and as such this project
 will be only writte in TS, there are no plans to write it in ES2015/ES6 nor anything like that, deal with it*
 
+## Install
+The package is still not production ready, so it not published on NPM and will be as soon as everything gets on track
+that being said in order to test/play/hack it clone this repository and checkout the `develop` branch and from there
+if you want to have it globally available make sure you have `typescript >= 2.1` and the `tsc` command is globally
+available (i.e the path to its executable is in your path) as it will run it to compile the *.ts files
+
 ## Info
 This is a small CLI tool aiming to provide PHP code inspections written in typescript,
 main intent came from my interest in working on VSCode instead of a full fledged IDE,
