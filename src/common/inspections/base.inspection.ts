@@ -3,16 +3,38 @@ import { InspectionItemCollection, InspectionInterface, InspectionRange } from '
 export abstract class BaseInspection implements InspectionInterface
 {
     private _parser;
+    private _config;
+    private _strict: boolean;
 
     get parser() {
         return this._parser;
     }
 
+    public getConfigurationNamespace(): string { return '';}
+
     set parser(parser) {
         throw 'Parser should not be modified!';
     }
 
-    constructor() {
+    get config() {
+        return this._config;
+    }
+
+    set config(configuration: any) {
+        throw 'Configuration is a one-off process';
+    }
+
+    get strict() {
+        return this._strict;
+    }
+
+    set strict(strict: boolean) {
+        throw '"Strict mode" cannot be overwritten';
+    }
+
+    constructor(strict: boolean, configuration?: any) {
+        this._strict = strict;
+        this._config = configuration;
         this._parser = require('php-parser')
             .create({
                 parser: {
@@ -29,15 +51,15 @@ export abstract class BaseInspection implements InspectionInterface
 
         content.split("\n").forEach((line: string, lineNo: number) => {
             if (range === null && line.indexOf(needle) !== -1) {
-                range = {
+                range = <InspectionRange> {
                     start: {
-                        line: lineNo+1,
+                        line: lineNo,
                         character: line.indexOf(needle)
                     },
                     end: {
-                        line: lineNo+1,
+                        line: lineNo,
                         character: needle.indexOf('(') !== -1 ?
-                            line.lastIndexOf(')')+1 : line.indexOf(needle)+needle.length
+                            line.lastIndexOf(')') : line.indexOf(needle)+needle.length
                     }
                 }
             }
