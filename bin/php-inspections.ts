@@ -44,6 +44,7 @@ let inspections: InspectionInterface[] = [];
 inspections.push(new inspection.DebugInspection(isStrict));
 inspections.push(new inspection.FunctionsInspection(isStrict));
 inspections.push(new inspection.ConditionsInspection(isStrict));
+inspections.push(new inspection.EvalInspection(isStrict, <inspection.EvalInspectionConfiguration>{}));
 
 if (isPHP7) {
     inspections.push(new inspection.Php7Inspection(isStrict));
