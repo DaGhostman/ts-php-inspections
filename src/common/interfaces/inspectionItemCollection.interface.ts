@@ -1,7 +1,7 @@
 import { InspectionItem } from './inspectionItem.interface';
 export interface InspectionItemCollection
 {
-    targetFile?: string;
-    items: InspectionItem[];
-    mtime?: number;
+    readonly targetFile?: string;
+    readonly items: InspectionItem[];
+    readonly mtime?: number;
 }

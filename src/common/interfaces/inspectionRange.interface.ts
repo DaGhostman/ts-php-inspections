@@ -1,10 +1,10 @@
 export interface InspectionRange {
-    start: {
-        line: number,
-        character: number
+    readonly start: {
+        readonly line: number,
+        readonly character: number
     },
-    end: {
-        line: number,
-        character: number
+    readonly end: {
+        readonly line: number,
+        readonly character: number
     }
 }

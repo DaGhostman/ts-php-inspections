@@ -1,8 +1,8 @@
 import { InspectionRange } from './inspectionRange.interface';
 
 export interface InspectionItem {
-    message: string;
-    severity: number;
-    range: InspectionRange;
-    replacement?: string;
+    readonly message: string;
+    readonly severity: number;
+    readonly range: InspectionRange;
+    readonly replacement?: string;
 }
