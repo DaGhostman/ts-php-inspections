@@ -221,9 +221,8 @@ export class ConditionsInspection extends BaseInspection implements InspectionIn
 
             // if (node[1][2])
             if (node[1][2][1] === 'false' || node[1][3][1] === 'false') {
-                let inspectionItem = <InspectionItem>{
-                    message: ''
-                };
+                let inspectionItem: InspectionItem;
+
                 let range = {
                     start: {line: 0, character: 0},
                     end: {line: 0, character: 0}
@@ -244,16 +243,17 @@ export class ConditionsInspection extends BaseInspection implements InspectionIn
                             range.end.line = lineNo;
                             range.end.character = line.indexOf(needle)+needle.length
 
-                            inspectionItem.message =
-                                `Condition could be refactored to \`${(['==', '==='].indexOf(expresionSign) !== -1) ?
+                            inspectionItem = {
+                                message: `Condition could be refactored to \`${(['==', '==='].indexOf(expresionSign) !== -1) ?
                                     '(!' + (node[1][2][1].toLowerCase() === 'false' ? node[1][3][1] : node[1][2][1]) + ')' :
                                     '(' + (node[1][2][1].toLowerCase() === 'false' ? node[1][3][1] : node[1][2][1]) + ')'
-                                }\` instead`;
-                            inspectionItem.range = range;
-                            inspectionItem.severity = 4;
-                            inspectionItem.replacement = (['==', '==='].indexOf(expresionSign) !== -1) ?
+                                }\` instead`,
+                            range: range,
+                            severity: 4,
+                            replacement: (['==', '==='].indexOf(expresionSign) !== -1) ?
                                 '(!' + (node[1][2][1].toLowerCase() === 'false' ? node[1][3][1] : node[1][2][1]) + ')' :
-                                '(' + (node[1][2][1].toLowerCase() === 'false' ? node[1][3][1] : node[1][2][1]) + ')';
+                                '(' + (node[1][2][1].toLowerCase() === 'false' ? node[1][3][1] : node[1][2][1]) + ')'
+                            };
 
                             items.push(inspectionItem);
                         }
@@ -286,16 +286,17 @@ export class ConditionsInspection extends BaseInspection implements InspectionIn
                             range.end.line = lineNo;
                             range.end.character = line.indexOf(needle)+needle.length
 
-                            inspectionItem.message =
-                                `Condition could be refactored to \`${(['==', '==='].indexOf(expresionSign) !== -1) ?
+                            inspectionItem = {
+                                message: `Condition could be refactored to \`${(['==', '==='].indexOf(expresionSign) !== -1) ?
                                     '(' + (node[1][2][1].toLowerCase() === 'true' ? node[1][3][1] : node[1][2][1]) + ')' :
                                     '(!' + (node[1][2][1].toLowerCase() === 'true' ? node[1][3][1] : node[1][2][1]) + ')'
-                                }\` instead`;
-                            inspectionItem.range = range;
-                            inspectionItem.severity = 4;
-                            inspectionItem.replacement = (['==', '==='].indexOf(expresionSign) !== -1) ?
+                                }\` instead`,
+                            range: range,
+                            severity: 4,
+                            replacement: (['==', '==='].indexOf(expresionSign) !== -1) ?
                                 '(' + (node[1][2][1].toLowerCase() === 'true' ? node[1][3][1] : node[1][2][1]) + ')' :
-                                '(!' + (node[1][2][1].toLowerCase() === 'true' ? node[1][3][1] : node[1][2][1]) + ')';
+                                '(!' + (node[1][2][1].toLowerCase() === 'true' ? node[1][3][1] : node[1][2][1]) + ')'
+                            };
 
                             items.push(inspectionItem);
                         }
