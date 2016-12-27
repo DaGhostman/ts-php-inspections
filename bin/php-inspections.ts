@@ -41,12 +41,12 @@ const isPHP7 = (process.argv.indexOf('--php5') === -1);
 
 let inspections: InspectionInterface[] = [];
 
-inspections.push(new inspection.DebugInspection());
-inspections.push(new inspection.FunctionsInspection());
-inspections.push(new inspection.ConditionsInspection());
+inspections.push(new inspection.DebugInspection(isStrict));
+inspections.push(new inspection.FunctionsInspection(isStrict));
+inspections.push(new inspection.ConditionsInspection(isStrict));
 
 if (isPHP7) {
-    inspections.push(new inspection.Php7Inspection());
+    inspections.push(new inspection.Php7Inspection(isStrict));
 }
 
 let target = process.argv.pop();
