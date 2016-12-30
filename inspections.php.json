@@ -1,0 +1,23 @@
+{
+    /**
+     * This is a sample configuration file that should get you started with the tool
+     * Every configuration should support the 'enable' switch, but since one can
+     * extend the tool with custom checks (and every inspection checks its own config)
+     * they might decide to ignore it, but as a rule of thumb everyone should :)
+     *
+     * Turning off certail groups is also possible, for the built-in ones, but again
+     * not guaranteed for 3rd party inspections and/or how you included them.
+     */
+    "design": {
+        "enable": false, // Switch to disable the whole section of the configuration
+        "optimal_conditions": {}, // if '($foo != true)' is used instead of '(!$foo)''
+        "debug_statements": { // If debug statements are found withing the code
+            "whitelist": [] // If any functions are allowed
+        },
+        "eval": {
+            "enabled": false,
+            "severity": 3
+        }, // If eval is found somewhere in the code
+        "strict_comparison": {} // if '==' and '!=' are used instead of '===' and '!=='
+    }
+}

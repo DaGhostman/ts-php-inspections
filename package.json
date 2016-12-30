@@ -10,7 +10,8 @@
   "main": "./src/index.js",
   "dependencies": {
     "@types/node": "^6.0.53",
-    "php-parser": "^0.1.4"
+    "php-parser": "^0.1.4",
+    "strip-json-comments": "^2.0.1"
   },
   "devDependencies": {
     "typescript": "^2.1.0",

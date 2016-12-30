@@ -34,7 +34,7 @@ export abstract class BaseInspection implements InspectionInterface
 
     constructor(strict: boolean, configuration?: any) {
         this._strict = strict;
-        this._config = configuration;
+        this._config = this.getConfigurationForNamespace(configuration);
         this._parser = require('php-parser')
             .create({
                 parser: {
@@ -43,6 +43,26 @@ export abstract class BaseInspection implements InspectionInterface
                     extractDoc: true,
                 }
             });
+    }
+
+    private getConfigurationForNamespace(configurations: any): any
+    {
+        let pointer = configurations;
+        let valid = true;
+
+        if (configurations !== undefined) {
+            this.getConfigurationNamespace().split('.').forEach((key) => {
+                if (valid) {
+                    valid = pointer.hasOwnProperty(key)
+                }
+
+                if (valid) {
+                    pointer = pointer[key];
+                }
+            });
+        }
+
+        return pointer === configurations ? null : pointer;
     }
 
     protected getRange(content: string, needle: string): InspectionRange
@@ -100,6 +120,10 @@ export abstract class BaseInspection implements InspectionInterface
         }
 
         return extract;
+    }
+
+    protected isEnabled() {
+        return (this.config !== null && this.config.enabled !== undefined && !this.config.enabled);
     }
 
     abstract analyze(content: string): InspectionItemCollection;

@@ -5,6 +5,19 @@ import * as inspection from '../src/inspections';
 import { TreeBuilder } from '../src/util/treeBuilder.util';
 import { InspectionItemCollection, InspectionItem, InspectionInterface } from '../src/common/interfaces';
 
+const strip = <(json: string, options?: {}) => string>require('strip-json-comments');
+
+let configs: any = {};
+if (fs.existsSync(process.cwd() + '/inspections.php.json')) {
+    try {
+        configs = JSON.parse(strip(fs.readFileSync(process.cwd() + '/inspections.php.json').toString()));
+    } catch (_) {
+        console.error(_.message + ` while reading '${process.cwd()}/inspections.php.json'`);
+        process.exit(1);
+    }
+}
+
+const configurations = configs;
 
 if (process.argv.indexOf('--help') !== -1) {
     console.log("\n");
@@ -41,10 +54,15 @@ const isPHP7 = (process.argv.indexOf('--php5') === -1);
 
 let inspections: InspectionInterface[] = [];
 
-inspections.push(new inspection.DebugInspection(isStrict));
-inspections.push(new inspection.FunctionsInspection(isStrict));
-inspections.push(new inspection.ConditionsInspection(isStrict));
-inspections.push(new inspection.EvalInspection(isStrict, <inspection.EvalInspectionConfiguration>{}));
+inspections.push(new inspection.DebugInspection(isStrict, configurations));
+inspections.push(new inspection.FunctionsInspection(isStrict, configurations));
+inspections.push(new inspection.ConditionsInspection(isStrict, configurations));
+// 'DESIGN' rules group
+if (!configurations.hasOwnProperty('design') ||
+    (configurations.hasOwnProperty('design') && configurations.design.enable === undefined) ||
+    (configurations.hasOwnProperty('design') && configurations.design.enable !== undefined)) {
+    inspections.push(new inspection.EvalInspection(isStrict, <inspection.EvalInspectionConfiguration>configurations));
+}
 
 if (isPHP7) {
     inspections.push(new inspection.Php7Inspection(isStrict));
@@ -84,7 +102,7 @@ projectFiles.forEach((file: string, index: number) => {
             }
             collection.items.forEach((item: InspectionItem) => {
                 if (item === undefined) { return; }
-                console.log(`[${severity[item.severity]}] "${item.message}" on line ${item.range.start.line}, column ${item.range.start.character+1}-${item.range.end.character+1}`);
+                console.log(`[${severity[item.severity]}] "${item.message}" on line ${item.range.start.line+1}, column ${item.range.start.character+1}-${item.range.end.character+1}`);
             });
         }
     });

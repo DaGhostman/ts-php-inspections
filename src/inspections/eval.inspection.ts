@@ -26,7 +26,7 @@ export class EvalInspection extends BaseInspection implements InspectionInterfac
 
     public analyze(content: string): InspectionItemCollection
     {
-        if (this.config !== undefined && !this.config.enabled) {
+        if (this.isEnabled()) {
             return <InspectionItemCollection> {
                 items: []
             }
@@ -40,8 +40,8 @@ export class EvalInspection extends BaseInspection implements InspectionInterfac
                 }
 
                 items.push(<InspectionItem>{
-                    message: this.config !== undefined ? (this.config.message !== undefined ? this.config.message : 'Eval is evil') : 'Eval is evil',
-                    severity: this.config !== undefined ? (this.config.severity !== undefined ? this.config.severity : 2) : 2,
+                    message: this.config !== null ? (this.config.message !== undefined ? this.config.message : 'Eval is evil') : 'Eval is evil',
+                    severity: this.config !== null ? (this.config.severity !== undefined ? this.config.severity : 2) : 2,
                     range: this.getRange(line, 'eval(')
                 });
             }
