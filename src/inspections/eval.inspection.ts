@@ -21,7 +21,7 @@ export class EvalInspection extends BaseInspection implements InspectionInterfac
 
     public getConfigurationNamespace(): string
     {
-        return 'clean_code.eval';
+        return 'clean.eval';
     }
 
     public analyze(content: string): InspectionItemCollection
