@@ -1,4 +1,6 @@
 <?php
 
-/* @suppressInspection(clean_code.eval) */
+/* @suppressInspection(clean.eval) */
 eval('echo "Hello, World!";');
+
+eval('exit(1);');
