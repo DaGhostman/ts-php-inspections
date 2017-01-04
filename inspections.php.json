@@ -14,7 +14,7 @@
         "strict_comparison": {} // if '==' and '!=' are used instead of '===' and '!=='
     },
     "clean": {
-        "debug_statements": { // If debug statements are found withing the code
+        "debug": { // If debug statements are found withing the code
             "whitelist": [
                 "var_export"
             ] // If any functions are allowed
