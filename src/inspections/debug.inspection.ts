@@ -14,6 +14,20 @@ export class DebugInspection extends BaseInspection implements InspectionInterfa
         'debug'
     ];
 
+    constructor(strict, config)
+    {
+        super(strict, config);
+
+        this.items = this.items.filter((item) => {
+            return this.config.whitelist.indexOf(item) === -1;
+        });
+    }
+
+    public getConfigurationNamespace(): string
+    {
+        return 'clean.debug';
+    }
+
     private checkForDebugFunctionCalls(tree, content: string): InspectionItem[]
     {
         let items: InspectionItem[] = [];
