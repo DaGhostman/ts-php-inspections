@@ -1,12 +1,14 @@
 import { InspectionItemCollection, InspectionInterface, InspectionRange } from '../interfaces';
+import { Configuration as ParsrerConfiguration }  from './../interfaces/internal/configuration.interface';
+import { Parser } from './../../../php-parser';
 
 export abstract class BaseInspection implements InspectionInterface
 {
-    private _parser;
+    private _parser: Parser;
     private _config;
     private _strict: boolean;
 
-    get parser() {
+    get parser(): Parser {
         return this._parser;
     }
 
@@ -35,14 +37,19 @@ export abstract class BaseInspection implements InspectionInterface
     constructor(strict: boolean, configuration?: any) {
         this._strict = strict;
         this._config = this.getConfigurationForNamespace(configuration);
-        this._parser = require('php-parser')
-            .create({
-                parser: {
-                    locations: true,
-                    suppressErrors: true,
-                    extractDoc: true,
-                }
-            });
+        let parser = require('php-parser');
+        this._parser = new parser(<ParsrerConfiguration>{
+            parser: {
+                extractDoc: true,
+                suppressErrors: true
+            },
+            ast: {
+                withPositions: true
+            },
+            lexer: {
+                shortTags: true
+            }
+        });
     }
 
     private getConfigurationForNamespace(configurations: any): any
@@ -90,16 +97,7 @@ export abstract class BaseInspection implements InspectionInterface
 
     protected isNodeOfType(node: any, type: string)
     {
-        node = node || [];
-        if (typeof node !== 'object' ||  node[0] === undefined) {
-            return false
-        }
-
-        if (node[0] === type) {
-            return true;
-        }
-
-        return false;
+        return (typeof node !== type);
     }
 
     protected walkNodeTree(ast: any, callback: (node: any) => boolean)
