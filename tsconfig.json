@@ -1,13 +1,22 @@
 {
 	"compilerOptions": {
-		"target": "es5",
+		"target": "es6",
 		"module": "commonjs",
 		"moduleResolution": "node",
 		"sourceMap": false,
 		"alwaysStrict": true,
 		"removeComments": true,
+		"allowUnreachableCode": false,
+		"rootDirs": [
+			"src/"
+		],
+		"stripInternal": true,
+		"pretty": true,
 		"typeRoots": [
 			"node_modules/@types"
+		],
+		"types": [
+			"node"
 		]
 	},
 	"exclude": [
