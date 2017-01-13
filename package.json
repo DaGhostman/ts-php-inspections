@@ -10,15 +10,14 @@
   "main": "./src/index.js",
   "dependencies": {
     "@types/node": "^6.0.53",
-    "php-parser": "~0.1.4",
+    "php-parser": "~1.0.0",
     "strip-json-comments": "^2.0.1"
   },
   "devDependencies": {
-    "typescript": "^2.1.0",
-    "typings": "^2.1.0"
+    "typescript": "~2.0.0"
   },
   "scripts": {
-    "postinstall": "tsc",
+    "postinstall": "./node_modules/.bin/tsc",
     "watch": "./node_modules/.bin/tsc --watch"
   }
 }
